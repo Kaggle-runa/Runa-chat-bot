@@ -9,24 +9,30 @@ ChatGPT APIを利用したLineBotです。動作環境はGASとなります。
 
 <br>
 
-2. LINE Developersアカウントを作成し、チャンネルアクセストークンを取得する  
+2. GCPのアカウントを作成してAPIキーを発行する  
+     参考URL：https://cloud.google.com/natural-language/docs/setup?hl=ja
+
+<br>
+
+3. LINE Developersアカウントを作成し、チャンネルアクセストークンを取得する  
      参考サイト：https://developers.line.biz/ja/docs/messaging-api/building-bot/  
 
 <br>
 
-3. スプレッドシートを作成し、下記のように列名を設定する
+4. スプレッドシートを作成し、下記のように列名を設定する
     - A1セルに「User ID」
     - B1セルに「Message」
     - C1セルに「Response」  
 <br>
 
-4. GASプロジェクトを作成し、GitHubに添付しているコードを貼り付ける  
+5. GASプロジェクトを作成し、GitHubに添付しているコードを貼り付ける  
      (環境変数には下記を**スクリプトプロパティ**に設定する)
      - LINE_ACCESS_TOKEN：2.で作成したチャンネルアクセストークン
      - OPENAI_APIKEY：1.で作成したopenaiのアクセスキー
      - SPREADSHEET_ID：3.で作成したスプレッドシートのID
+     - GOOGLE_CLOUD_API_KEY：GCPのAPI キー
 
-5. 4まで完了したらGASをデプロイして表示されたURLのLINE Developerの**Webhook URL**に設定する  
+6. 5まで完了したらGASをデプロイして表示されたURLのLINE Developerの**Webhook URL**に設定する  
    <img width="954" alt="無題" src="https://user-images.githubusercontent.com/58076642/227694797-0c005e77-19a6-4a01-931c-5ed64bbc9d64.png">
 
 
