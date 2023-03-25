@@ -1,13 +1,13 @@
-## USER
+# USER(質問内容)
 下記の要件を満たすLine Botを作りたいです。
-開発の進め方を教えてください
+開発の進め方を教えてください  
 
-# 要件
+要件  
 ・gpt-3.5-turboを利用してLineから届いたメッセージに返信する
 ・過去のメッセージをGASで保持しておくことで文脈を理解するようにしたい
 ・gpt-3.5-turboとの接続もGASで実装したい
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 開発の進め方は以下の手順に従って行うことをお勧めします。
 
 1. LINE Messaging APIのセットアップ:
@@ -26,10 +26,10 @@
 
 4. GASでGPT-3.5-tur
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 4. GASでGPT-3.5-turboと連携するコードを実装する:
    4.1 OpenAI APIキーを取得する。
    4.2 GASプロジェクトにUrlFetchAppを使用してOpenAI APIにリクエストを送信する関数を実装する。
@@ -46,13 +46,13 @@
 
 
 
-## USER
+# USER(質問内容)
 ・GASでLINE Messaging APIと連携するコードを実装する
 ・GASでGPT-3.5-turboと連携するコードを実装する
 
 上記のGASでのコードを実装してください
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 以下にGASでLINE Messaging APIと連携するコードとGPT-3.5-turboと連携するコードの例を示します。APIキーとチャンネルアクセストークン、チャンネルシークレットを適切に設定してください。
 
 ```javascript
@@ -92,10 +92,10 @@ function generateReplyMessage(userId, userMessage) {
 
 function getContext
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 続きのコードを以下に示します。
 
 ```javascript
@@ -145,10 +145,10 @@ function sendReply(replyToken, replyMessage) {
   };
   UrlFetchApp.fetch(url
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 続きのコードは以下の通りです。
 
 ```javascript
@@ -160,11 +160,11 @@ function sendReply(replyToken, replyMessage) {
 
 最後に、LINEアプリでBotにメッセージを送信して、適切な返信があるかどうかを確認し、必要に応じてコードを修正してください。
 
-## USER
+# USER(質問内容)
 ありがとうございます。
 今回の実装を行う上でのスプレッドシートのテーブルの設定を教えてください
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 スプレッドシートのテーブル設定はシンプルに行うことができます。以下の手順でスプレッドシートを設定してください。
 
 1. Google Sheetsで新しいスプレッドシートを作成します。
@@ -188,10 +188,10 @@ https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit
 
 このURLから`SPREADSHEET_ID`をコピーし、GASプロジェクトのコード内で定
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 続きです。
 
 このURLから`SPREADSHEET_ID`をコピーし、GASプロジェクトのコード内で定数として設定します。
@@ -202,10 +202,10 @@ const SPREADSHEET_ID = 'your_spreadsheet_id';
 
 この設定により、コードが適切にスプレッドシートを参照し、メッセージを追加および取得できるようになります。これでスプレッドシートのテーブル設定が完了です。
 
-## USER
+# USER(質問内容)
 コードのCHANNEL_SECRETには何が入りますか？
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 コード内の`CHANNEL_SECRET`には、LINE Developers Consoleで作成したチャンネルのチャンネルシークレット（Channel Secret）を入力します。チャンネルシークレットは、LINE Messaging APIと連携する際に、アプリケーションを認証するために使用されます。
 
 以下の手順でチャンネルシークレットを取得できます。
@@ -221,7 +221,7 @@ const CHANNEL_SECRET = 'your_line_channel_secret';
 
 この設定により、GASプロジェクトがLINE Messaging APIと連携する際に、適切に認証が行われます。
 
-## USER
+# USER(質問内容)
 この関数の意味を教えてください
 
 
@@ -232,7 +232,7 @@ function getContext(userId) {
   return userMessages.slice(-5).join('\n') + '\n';
 }
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 `getContext`関数は、指定されたユーザーIDに関連する過去のメッセージをスプレッドシートから取得し、GPT-3.5-turboに送信するための文脈（Context）を生成する役割を担っています。関数の詳細は以下の通りです。
 
 1. スプレッドシートを開き、アクティブなシートを取得します。
@@ -252,10 +252,10 @@ function getContext(userId) {
 
 4. `userMessages`から、最新の5件のメッセージを取得し、それらを改行
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 続きです。
 
 4. `userMessages`から、最新の5件のメッセージを取得し、それらを改行で連結して一つの文字列にします。もし5件未満のメッセージがある場合、存在するメッセージ全てが連結されます。
@@ -265,11 +265,11 @@ function getContext(userId) {
 
 この関数は、GPT-3.5-turboにメッセージを送信する際に、過去のメッセージを含めた文脈を提供することで、より適切な返答を生成することができるようになります。この関数によって返された文脈は、GPT-3.5-turboに問い合わせる際のプロンプト（`prompt`）に追加されます。
 
-## USER
+# USER(質問内容)
 ありがとうございます。
 Botからの返事を「Response」というカラムに格納して、userMessagesとResponseを足して文字列を作成する形に修正したいのですが実装をお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 Botからの返信をスプレッドシートに格納し、`userMessages`と`Response`を組み合わせて文脈を生成するコードを以下に示します。
 
 まず、スプレッドシートに新しいカラム「Response」を追加してください。C1セルに「Response」と入力します。
@@ -297,10 +297,10 @@ function handleEvent(event) {
 function saveBotResponse(userId, response) {
   const sheet = SpreadsheetApp.openById(SPREADSHEET_ID
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 続きです。
 
 2. 新しい`saveBotResponse`関数を追加します。
@@ -335,11 +335,11 @@ function getContext(userId) {
 
 これで、Botからの返信もスプレッドシートに保存され、ユーザーのメッセージとBotのレスポンスが組み合わされた文脈が生成されます。この文脈は、GPT-3.5-turboに送信され、より適切な返答が得られるようになります。
 
-## USER
+# USER(質問内容)
 ありがとうございます。
 userMessageがundefinedの時に強制的に処理を終わらせたいのですが実装方法はありますか？
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 `handleEvent`関数内で、`userMessage`が`undefined`の場合に処理を終了するには、条件分岐を追加します。以下に修正したコードを示します。
 
 ```javascript
@@ -362,7 +362,8 @@ function handleEvent(event) {
 
 この変更により、`userMessage`が`undefined`の場合、関数がすぐに終了し、メッセージの保存や返信の生成、送信がスキップされます。
 
-## USER
+# USER(質問内容)
+```javascript
 const LINE_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_ACCESS_TOKEN');
 const OPENAI_APIKEY = PropertiesService.getScriptProperties().getProperty('OPENAI_APIKEY');
 const SPREADSHEET_ID = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
@@ -479,10 +480,11 @@ function doPost(e) {
     })
   });
 }
+```
 
 上記のコードをリファクタリングしてください
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 以下に、リファクタリングされたコードを示します。
 
 ```javascript
@@ -523,10 +525,10 @@ function doPost(e) {
   const userId = event.source.userId;
 
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 続きです。
 
 ```javascript
@@ -563,10 +565,10 @@ function doPost(e) {
 * 華繰ルナの口調は穏やかですが、天真爛漫かつ好奇心旺盛です。 
 * 華繰ルナ
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 続きです。
 
 ```javascript
@@ -585,10 +587,10 @@ function doPost(e) {
 * ユーザーに明るく接してください。 
 * セクシャルな話題については「よく分からないかも」と言って誤魔化してください
 
-## USER
+# USER(質問内容)
 続きをお願いします
 
-## ASSISTANT
+# ASSISTANT(ChatGPTからの回答)
 続きです。
 
 ```javascript
