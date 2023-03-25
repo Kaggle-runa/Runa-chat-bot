@@ -1,34 +1,88 @@
 const LINE_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_ACCESS_TOKEN');
 const OPENAI_APIKEY = PropertiesService.getScriptProperties().getProperty('OPENAI_APIKEY');
 const SPREADSHEET_ID = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
+const GOOGLE_CLOUD_API_KEY = PropertiesService.getScriptProperties().getProperty('GOOGLE_CLOUD_API_KEY');;
 
+// 質問内容をスプレッドシートに保存する関数
 function saveMessage(userId, message) {
   const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
   sheet.appendRow([userId, message]);
 }
 
+// Botからのレスポンスをスプレッドシートに保存する関数
 function saveBotResponse(response) {
   const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
   const lastRow = sheet.getLastRow();
   sheet.getRange(lastRow, 3).setValue(response);
 }
 
-function getContext(userId) {
+
+// Google Cloud Natural Language APIを呼び出す関数
+function analyzeSentences(sentence1, sentence2) {
+  const apiUrl = 'https://language.googleapis.com/v1/documents:analyzeEntities?key=' + GOOGLE_CLOUD_API_KEY;
+
+  const requestOptions = {
+    "method": "post",
+    "contentType": "application/json",
+    "payload": JSON.stringify({
+      "document": {
+        "type": "PLAIN_TEXT",
+        "content": sentence1 + '\n' + sentence2
+      },
+      "encodingType": "UTF8"
+    })
+  };
+
+  const response = UrlFetchApp.fetch(apiUrl, requestOptions);
+  const responseJson = JSON.parse(response.getContentText());
+  return responseJson;
+}
+
+
+// 過去の会話と現在の質問との類似性を計算する関数
+function calculateSemanticSimilarity(sentence1, sentence2) {
+  const responseJson = analyzeSentences(sentence1, sentence2);
+  const entities1 = responseJson.entities.slice(0, responseJson.entities.length / 2);
+  const entities2 = responseJson.entities.slice(responseJson.entities.length / 2);
+
+  let commonEntities = 0;
+
+  for (let entity1 of entities1) {
+    for (let entity2 of entities2) {
+      if (entity1.name === entity2.name) {
+        commonEntities++;
+      }
+    }
+  }
+
+  const similarityScore = commonEntities / Math.min(entities1.length, entities2.length);
+  return similarityScore;
+}
+
+
+// 過去の会話履歴を取得する関数(threshold:会話の類似度 limit:取得する会話数)
+function getContext(userId, threshold = 0.3, limit = 3) {
   const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
   const rows = sheet.getDataRange().getValues();
   const userAndBotMessages = rows.filter(row => row[0] === userId).map(row => [row[1], row[2]]);
   let context = '';
 
-  userAndBotMessages.slice(-2).forEach(([userMessage, botResponse]) => {
-    context += userMessage + '\n';
-    if (botResponse) {
-      context += 'Bot: ' + botResponse + '\n';
+  for (let i = Math.max(0, userAndBotMessages.length - limit); i < userAndBotMessages.length; i++) {
+    const [userMessage, botResponse] = userAndBotMessages[i];
+    const similarityScore = calculateSemanticSimilarity(userMessage, userAndBotMessages[userAndBotMessages.length - 1][0]);
+
+    if (similarityScore >= threshold) {
+      context += userMessage + '\n';
+      if (botResponse) {
+        context += 'Bot: ' + botResponse + '\n';
+      }
     }
-  });
+  }
 
   return context;
 }
 
+// LINE通知を行う関数
 function doPost(e) {
   const event = JSON.parse(e.postData.contents).events[0];
   const replyToken = event.replyToken;
