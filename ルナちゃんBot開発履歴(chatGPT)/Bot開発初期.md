@@ -363,6 +363,7 @@ function handleEvent(event) {
 この変更により、`userMessage`が`undefined`の場合、関数がすぐに終了し、メッセージの保存や返信の生成、送信がスキップされます。
 
 # USER(質問内容)
+```javascript
 const LINE_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_ACCESS_TOKEN');
 const OPENAI_APIKEY = PropertiesService.getScriptProperties().getProperty('OPENAI_APIKEY');
 const SPREADSHEET_ID = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
@@ -479,6 +480,7 @@ function doPost(e) {
     })
   });
 }
+```
 
 上記のコードをリファクタリングしてください
 
