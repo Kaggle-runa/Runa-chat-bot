@@ -1,4 +1,5 @@
 ## USER
+```javascript
 const LINE_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty('LINE_ACCESS_TOKEN');
 const OPENAI_APIKEY = PropertiesService.getScriptProperties().getProperty('OPENAI_APIKEY');
 const SPREADSHEET_ID = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
@@ -115,6 +116,7 @@ function doPost(e) {
     })
   });
 }
+```
 
 上記のようなLineボットをGASで作成しています。
 過去の会話を参照することをできるようにしていますが関係のない質問を後にした場合に過去の会話の情報が邪魔をしてしまい出力結果がおかしくなってしまいます。
