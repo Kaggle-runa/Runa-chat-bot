@@ -27,10 +27,10 @@ ChatGPT APIを利用したLineBotです。動作環境はGASとなります。
 
 5. GASプロジェクトを作成し、GitHubに添付しているコードを貼り付ける  
      (環境変数には下記を**スクリプトプロパティ**に設定する)
-     - LINE_ACCESS_TOKEN：2.で作成したチャンネルアクセストークン
-     - OPENAI_APIKEY：1.で作成したopenaiのアクセスキー
-     - SPREADSHEET_ID：3.で作成したスプレッドシートのID
-     - GOOGLE_CLOUD_API_KEY：GCPのAPI キー
+     - LINE_ACCESS_TOKEN：3.で作成したチャンネルアクセストークン
+     - OPENAI_APIKEY：2.で作成したopenaiのアクセスキー
+     - SPREADSHEET_ID：4.で作成したスプレッドシートのID
+     - GOOGLE_CLOUD_API_KEY：1.で作成したGCPのAPI キー
 
 6. 5まで完了したらGASをデプロイして表示されたURLのLINE Developerの**Webhook URL**に設定する  
    <img width="954" alt="無題" src="https://user-images.githubusercontent.com/58076642/227694797-0c005e77-19a6-4a01-931c-5ed64bbc9d64.png">
