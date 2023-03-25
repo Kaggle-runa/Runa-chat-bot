@@ -25,3 +25,6 @@ ChatGPT APIを利用したLineBotです。動作環境はGASとなります。
      - LINE_ACCESS_TOKEN：2.で作成したチャンネルアクセストークン
      - OPENAI_APIKEY：1.で作成したopenaiのアクセスキー
      - SPREADSHEET_ID：3.で作成したスプレッドシートのID
+
+5. 4まで完了したらGASをデプロイして表示されたURLのLINE Developerの**Webhook URL**に設定する  
+   <img width="954" alt="無題" src="https://user-images.githubusercontent.com/58076642/227694797-0c005e77-19a6-4a01-931c-5ed64bbc9d64.png">
