@@ -28,3 +28,9 @@ ChatGPT APIを利用したLineBotです。動作環境はGASとなります。
 
 5. 4まで完了したらGASをデプロイして表示されたURLのLINE Developerの**Webhook URL**に設定する  
    <img width="954" alt="無題" src="https://user-images.githubusercontent.com/58076642/227694797-0c005e77-19a6-4a01-931c-5ed64bbc9d64.png">
+
+
+## 参考URL
+- https://qiita.com/yshimizu22/items/150c1c38c36c48b283be
+- https://chatgpt-lab.com/n/n55257c082a9d
+- https://dev.classmethod.jp/articles/chatgpt-api-line-bot-aws-serverless/
