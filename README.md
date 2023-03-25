@@ -15,12 +15,12 @@ ChatGPT APIを利用したLineBotです。動作環境はGASとなります。
 <br>
 
 - 3. スプレッドシートを作成し、下記のように列名を設定する
-    - 1. A1セルに「User ID」
-    - 2. B1セルに「Message」
-    - 3. C1セルに「Response」  
+    - A1セルに「User ID」
+    - B1セルに「Message」
+    - C1セルに「Response」  
 <br>
 
-- 3. GASプロジェクトを作成し、GitHubに添付しているコードを貼り付ける  
+- 4. GASプロジェクトを作成し、GitHubに添付しているコードを貼り付ける  
      (環境変数には下記を**スクリプトプロパティ**に設定する)
      - LINE_ACCESS_TOKEN：2.で作成したチャンネルアクセストークン
      - OPENAI_APIKEY：1.で作成したopenaiのアクセスキー
