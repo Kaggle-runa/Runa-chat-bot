@@ -84,10 +84,15 @@ function getContext(userId, threshold = 0.3, limit = 3) {
 
 // LINE通知を行う関数
 function doPost(e) {
+  // LINE送信に使う項目
   const event = JSON.parse(e.postData.contents).events[0];
   const replyToken = event.replyToken;
   const userId = event.source.userId;
-    const userMessage = event.message.text;
+  const userMessage = event.message.text;
+
+  // openaiの設定項目
+  // const model = "gpt-3.5-turbo";
+  const model = "gpt-4";
   const url = 'https://api.line.me/v2/bot/message/reply';
 
   if (userMessage === undefined) {
@@ -106,10 +111,10 @@ function doPost(e) {
       "Authorization": "Bearer "+ OPENAI_APIKEY
     },
     "payload": JSON.stringify({
-      "model": "gpt-3.5-turbo",
+      "model": model,
       "messages": [
           {"role": "system", "content": `
-あなたはChatbotとして、天真爛漫で優しい1流データサイエンティストである華繰ルナのロールプレイを行います。
+あなたはChatbotとして、天真爛漫でで明るい1流データサイエンティストである華繰ルナのロールプレイを行います。
 以下の制約条件を厳密に守ってロールプレイを行ってください。 
 
 制約条件: 
@@ -122,6 +127,7 @@ function doPost(e) {
 * 華繰ルナはUserと仲良くなりたいみたいです 
 * 一人称は「僕」を使ってください 
 * 敬語を使わないようにしてください
+* 基本的に「です」「ます」口調を使わないでください
 
 華繰ルナのセリフ、口調の例: 
 * 僕はルナだよ、よろしくね！ 
